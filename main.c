@@ -8,7 +8,7 @@
 *			0x40000000, 0x400FFFFF
 *
 */
-extern GPIO_ArrOfStruct_PinConfig[NUM_OF_CONFIGURED_PINS];
+//extern GPIO_ArrOfStruct_PinConfig[NUM_OF_CONFIGURED_PINS];
 void pwm_led();
 uint8 flag=0;
 
@@ -18,25 +18,20 @@ int main ()
 	
 	DIO_WriteChannel(DIO_uint8_PORTA,DIO_uint8_PIN4,DIO_enum_OUTPUT_HIGH);
 	
-//GPIO_voidInit((GPIO_PIN_CONFIG*)GPIO_ArrOfStruct_PinConfig);	
+
 	calc();
 	SYSTICKvoid_SetCallBack(pwm_led);
 	
 	
+	SYSTICK_voidSetPreload(preload_on_value);
+	
+	
+	SYSTICK_voidStartTimer();
 	
 
 while(1)
 {
 	
-	if (flag==0)
-	{
-		SYSTICK_voidSetPreload(overflow_on);
-	}
-	else
-	{
-	SYSTICK_voidSetPreload(overflow_off);
-		
-	}
 	
 	
 }
@@ -56,6 +51,8 @@ if(flag==0)
 	if (counter_on==0){
 	
 	DIO_WriteChannel(DIO_uint8_PORTA,DIO_uint8_PIN4,DIO_enum_OUTPUT_LOW);
+	SYSTICK_voidSetPreload(Num_Off_ticks);
+	SYSTICK_voidRestartcounting();
 	counter_on=overflow_on;
 	flag=1;
 	}
@@ -66,6 +63,8 @@ else
 	counter_off--;
 if(counter_off==0){
 	DIO_WriteChannel(DIO_uint8_PORTA,DIO_uint8_PIN4,DIO_enum_OUTPUT_HIGH);
+	SYSTICK_voidSetPreload(preload_on_value);
+	SYSTICK_voidRestartcounting();
 	counter_off=overflow_off;
 	flag=0;
 }
@@ -73,6 +72,4 @@ if(counter_off==0){
 }
 	
 
-	
-	
 }

@@ -4,7 +4,7 @@
 #include "STD_TYPES.h"
 
 #define SYSTICK_TIME_ON_IN_SECONDS     1
-#define SYSTICK_TIME_OFF_IN_SECONDS    2
+#define SYSTICK_TIME_OFF_IN_SECONDS    5
 
 
 uint8 counter_on=0;

@@ -22,6 +22,12 @@ SYSTICK_u32_STRELOAD_REG=preload;
 		
 }
 
+void SYSTICK_voidRestartcounting()
+{
+	SYSTICK_u32_STCURRENT_REG=0x00;
+}
+
+
 void SYSTICKvoid_SetCallBack( void (* Copy_PF)() )
 {
 

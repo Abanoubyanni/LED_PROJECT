@@ -16,7 +16,7 @@ void SYSTICK_voidSetPreload (u32 preload );
 void SYSTICK_voidStartTimer();
 void SYSTICKvoid_SetCallBack( void (* Copy_PF)() );
 
-
+void SYSTICK_voidRestartcounting();
 #endif 
 
 
